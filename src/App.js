@@ -1,23 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
 
+import UserList from "./components/UserList";
 function App() {
+  
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"></link>
       </header>
+      <h1>
+        Examen
+      </h1>
+      <UserList />
+
     </div>
   );
 }
