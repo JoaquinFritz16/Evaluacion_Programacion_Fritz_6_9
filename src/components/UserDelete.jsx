@@ -1,17 +1,23 @@
 import axios from "axios";
-function UserDelete({userId, onDelete}) {
-    const db = "http://localhost:3004"
+
+function UserDelete({ userId, onDelete }) {
+    const db = "http://localhost:3004";
+
     const handleDelete = () => {
-        axios.delete(`${db}/usuario`)
-        .then(()=> {
-                onDelete(userId);
-                console.log("Usuario Borrado")
-            })
-    }
-    return(
+        console.log(userId);
+        axios.delete(`${db}/usuario/${userId}`)
+            .then(() => onDelete(userId))
+            .catch(error => {
+                console.error(error); 
+            });
+    };
+
+    return (
         <>
-        <button onClick={handleDelete}>Borrar</button>
+            <button onClick={handleDelete}>Delete</button>
         </>
-    )
+    );
 }
+
+
 export default UserDelete;

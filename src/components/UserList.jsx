@@ -20,22 +20,31 @@ function UserList(){
     setNewUsers({...newUsers, [name]: value})
 
   }
+
   const handleSubmit = (e) => {
     e.preventDefault()
+
     axios.post(`${db}/usuario`, newUsers)
     .then((response)=>{
         setUsers([...users, response.data])
         setNewUsers([...users, response.data])
         })
     .catch((error)=>  setError(error))
-  }
+}
   const handleDelete = (userId) => {
     setUsers(users.filter((user)=>user.id !== userId))
     setNewUsers(newUsers.filter((newuser)=>newuser.id !== userId))
   }
+  const handleEdit = (edit) => {
+    axios.put(`${db}/usuario`, edit)
+    .then((response)=>{
+        setUsers([...edit, response.data])
+        setNewUsers([...users, response.data])
+        })
+  }
     return(
         <>
-        <h1>Data:</h1>
+        <h1>Registro de Usuarios</h1>
         <form onSubmit={handleSubmit}>
             <label>Name:</label>
             <input type="text" value={newUsers.name} name="name" onChange={handleInputChange}/>
@@ -44,7 +53,7 @@ function UserList(){
             <button type="Submit">Enviar Formulario</button>
         </form>
         {error && <p>Error: {error}</p>}
-        <UserTable users={users} onDelete={handleDelete}></UserTable>
+        <UserTable users={users} newUsers={newUsers}onDelete={handleDelete} Edit={handleEdit}></UserTable>
         </>
     )
 }

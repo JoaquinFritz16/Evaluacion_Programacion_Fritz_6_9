@@ -1,11 +1,13 @@
 import UserDelete from "./UserDelete";
-function UserTable({users, onDelete}){
+import UserEdit from "./UserEdit";
+function UserTable({users, onDelete, Edit}){
     return(
         <table>
-            <colgroup span="3"></colgroup>
+            <colgroup span="4"></colgroup>
             <thead>
                 <th>Nombre:</th>
                 <th>Email:</th>
+                <th>Editar</th>
                 <th>Borrar:</th>
             </thead>
             <tbody>
@@ -13,7 +15,8 @@ function UserTable({users, onDelete}){
                     <tr key={user.id}>
                         <td>{user.name}</td>
                         <td>{user.email}</td>
-                        <UserDelete onDelete={onDelete}> userId={user.id}</UserDelete>
+                        <td><UserEdit edit={Edit}></UserEdit></td>
+                        <td><UserDelete onDelete={onDelete} userId={user.id}></UserDelete></td>
                     </tr>
                 ))}
             </tbody>
